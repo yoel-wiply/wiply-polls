@@ -38,7 +38,7 @@ export default function PollOptions({
             <div className="select-none w-full flex items-center justify-between px-4 z-20">
               <button
                 onClick={() => setVote(i)}
-                className={`flex flex-1 text-left py-2 ${
+                className={`flex flex-1 text-right py-2 ${
                   vote === null ? "cursor-pointer" : "cursor-default"
                 } ${
                   vote === null ? "" : votes[i] === mostVotes ? "font-bold" : ""
