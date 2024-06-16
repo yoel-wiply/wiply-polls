@@ -8,8 +8,6 @@ import { BaseRepository } from "@/app/libraries/firebase";
 const MIN_OPTIONS = 2;
 const MAX_OPTIONS = 8;
 
-
-
 export default function PollMaker() {
   const [newOption, setNewOption] = useState<string>("");
   const [title, setTitle] = useState("");
@@ -31,7 +29,7 @@ export default function PollMaker() {
   return (
     <>
       <Input
-        placeholder="Poll title"
+        placeholder="הכנס שאלה כאן..."
         type="text"
         name="title"
         className={"text-2xl font-bold"}
@@ -56,7 +54,7 @@ export default function PollMaker() {
               ref={newOptionRef}
               type="text"
               name="option-new"
-              placeholder="New option"
+              placeholder="אפשרות חדשה"
               value={newOption}
               onChange={(e) => setNewOption(e.target.value)}
               onKeyDown={(e) => {
@@ -69,13 +67,13 @@ export default function PollMaker() {
               }}
             />
             <Button theme="light" onClick={addNewOption}>
-              Add
+              הוספה
             </Button>
           </li>
         )}
       </ul>
       <Button type="submit" disabled={!canSubmit}>
-        Create poll
+        ליצירת הסקר{" "}
       </Button>
     </>
   );

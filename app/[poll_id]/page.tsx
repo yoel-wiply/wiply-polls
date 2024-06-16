@@ -62,11 +62,11 @@ export default function PollPage({
       )}
 
       <Balloon float={true} />
-      <div className="font-medium text-lg pt-8 text-center">
+      {/* <div className="font-medium text-lg pt-8 text-center">
         <a className="underline" href="/">
           Create your own poll!
         </a>
-      </div>
+      </div> */}
     </>
   );
 }
