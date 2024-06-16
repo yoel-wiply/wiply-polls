@@ -1,3 +1,5 @@
+'use client'
+
 import Button from "@/components/Button";
 import PollMaker from "@/components/PollMaker";
 import Balloon from "@/components/Balloon";
@@ -5,12 +7,15 @@ import { Poll } from "@/app/types";
 import { redirect } from "next/navigation";
 import { PARTYKIT_URL } from "./env";
 import Input from "@/components/Input";
+import { BaseRepository } from "./libraries/firebase";
 
 const randomId = () => Math.random().toString(36).substring(2, 10);
 
+const firebase = new BaseRepository('polls');
+
+
 export default function Home() {
   async function createPoll(formData: FormData) {
-    "use server";
 
     const title = formData.get("title")?.toString() ?? "Anonymous poll";
     const options: string[] = [];
@@ -25,17 +30,19 @@ export default function Home() {
     const poll: Poll = {
       title,
       options,
+      votes: options.map(() => 0)
     };
 
-    await fetch(`${PARTYKIT_URL}/party/${id}`, {
-      method: "POST",
-      body: JSON.stringify(poll),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    // await fetch(`${PARTYKIT_URL}/party/${id}`, {
+    //   method: "POST",
+    //   body: JSON.stringify(poll),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    await firebase.create(id,  {id, ...poll})
 
-    redirect(`/${id}`);
+    // redirect(`/${id}`);
   }
 
   return (

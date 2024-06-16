@@ -5,33 +5,38 @@ import { Poll } from "@/app/types";
 import usePartySocket from "partysocket/react";
 import { useEffect, useState } from "react";
 import PollOptions from "./PollOptions";
+import { BaseRepository } from "@/app/libraries/firebase";
+
+const firebase = new BaseRepository("polls");
+
 
 export default function PollUI({
   id,
   options,
-  initialVotes,
+  votes,
 }: {
   id: string;
   options: string[];
-  initialVotes?: number[];
+  votes: number[];
 }) {
-  const [votes, setVotes] = useState<number[]>(initialVotes ?? []);
+  // const [votes, setVotes] = useState<number[]>(initialVotes ?? []);
   const [vote, setVote] = useState<number | null>(null);
 
-  const socket = usePartySocket({
-    host: PARTYKIT_HOST,
-    room: id,
-    onMessage(event) {
-      const message = JSON.parse(event.data) as Poll;
-      if (message.votes) {
-        setVotes(message.votes);
-      }
-    },
-  });
+  // const socket = usePartySocket({
+  //   host: PARTYKIT_HOST,
+  //   room: id,
+  //   onMessage(event) {
+  //     const message = JSON.parse(event.data) as Poll;
+  //     if (message.votes) {
+  //       setVotes(message.votes);
+  //     }
+  //   },
+  // });
 
-  const sendVote = (option: number) => {
+  const sendVote =  async (option: number) => {
+    console.log(option)
     if (vote === null) {
-      socket.send(JSON.stringify({ type: "vote", option }));
+      await firebase.handleMultipleUpdates(id, option)
       setVote(option);
     }
   };

@@ -3,9 +3,12 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
+import { BaseRepository } from "@/app/libraries/firebase";
 
 const MIN_OPTIONS = 2;
 const MAX_OPTIONS = 8;
+
+
 
 export default function PollMaker() {
   const [newOption, setNewOption] = useState<string>("");
