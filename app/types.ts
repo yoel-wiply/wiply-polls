@@ -2,7 +2,6 @@ export type Poll = Base & {
   title: string;
   options: string[];
   votes: number[];
-  voteCount: number;
 };
 
 export type Base = {

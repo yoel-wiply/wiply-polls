@@ -9,7 +9,7 @@ import Balloon from "@/components/Balloon";
 import { BaseRepository } from "../libraries/firebase";
 import { useEffect, useState } from "react";
 
-const firebase = new BaseRepository("polls");
+const firebase = new BaseRepository<Poll>("polls");
 
 const initialPoll = {};
 
@@ -40,9 +40,10 @@ export default function PollPage({
 
   useEffect(() => {
     // firebase.handleMultipleUpdates(pollId)
-    firebase.subscribe(pollId, (poll: Poll) => {
+    firebase.subscribe(pollId, (poll: Poll | null) => {
       console.log('Poll', poll)
-      setPoll(poll);
+      if(poll !== null)
+        setPoll(poll);
     });
   }, []);
   console.log('Poll in reactr', poll)

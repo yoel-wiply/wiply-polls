@@ -29,22 +29,20 @@ const storage = firebase.storage();
 
 if (process.env.NX_PUBLIC_USE_EMULATOR === "true") {
   db.useEmulator("localhost", 8080);
-  storage.useEmulator("localhost", 9199);
+  //   storage.useEmulator("localhost", 9199);
 }
 
 export class BaseRepository<T extends Base> {
   private firestore: firebase.firestore.Firestore = db;
-  public collectionRef: firebase.firestore.CollectionReference<T>;
+  public collectionRef: firebase.firestore.CollectionReference;
   private storageRef = storage.ref();
 
-  constructor(private collectionPath?: string) {
-    if (collectionPath) {
-      this.collectionRef = this.firestore
-        .collection(collectionPath)
-        .withConverter(
-          this.baseConverter()
-        ) as firebase.firestore.CollectionReference<T>;
-    }
+  constructor(private collectionPath: string) {
+    this.collectionRef = this.firestore
+      .collection(collectionPath)
+      .withConverter(
+        this.baseConverter()
+      ) as firebase.firestore.CollectionReference<T>;
   }
 
   baseConverter = <T extends firebase.firestore.DocumentData>() => ({
@@ -89,30 +87,33 @@ export class BaseRepository<T extends Base> {
 
       db.runTransaction((transaction) => {
         // Get the current vote count
-        return transaction
-          .get(pollsRef)
-          .then((optionDoc: firebase.firestore.DocumentSnapshot<Poll>) => {
-            if (!optionDoc.exists) {
-              throw new Error("Option document does not exist!");
-            }
+        return transaction.get(pollsRef).then((optionDoc) => {
+          if (!optionDoc.exists) {
+            throw new Error("Option document does not exist!");
+          }
+          const pollData = optionDoc.data();
 
-            const temp = [...optionDoc.data().votes];
+          if (!pollData) {
+            return new Error("Poll Doesn't Exist");
+          }
 
-            // Calculate new vote count
-            const currentVotes = temp[option] || 0;
+          const temp = [...pollData.votes];
 
-            console.log("Before", temp);
-            const newVoteCount = currentVotes + 1;
+          // Calculate new vote count
+          const currentVotes = temp[option] || 0;
 
-            temp[option] = newVoteCount
+          console.log("Before", temp);
+          const newVoteCount = currentVotes + 1;
 
-            console.log("After", temp);
+          temp[option] = newVoteCount;
 
-            // Update vote count in transaction
-            transaction.update(pollsRef, { votes: temp });
+          console.log("After", temp);
 
-            return newVoteCount; // Return new vote count for logging or further use
-          });
+          // Update vote count in transaction
+          transaction.update(pollsRef, { votes: temp });
+
+          return newVoteCount; // Return new vote count for logging or further use
+        });
       })
         .then((newVoteCount) => {
           console.log(
@@ -163,7 +164,7 @@ export class BaseRepository<T extends Base> {
     return this.collectionRef.doc(entityId).onSnapshot((e) => {
       const data = e.data();
       if (data) {
-        onChange(data);
+        onChange(data as T);
       } else {
         onChange(null);
       }
@@ -173,28 +174,6 @@ export class BaseRepository<T extends Base> {
   async fetchAll(filter: Partial<T> = {}) {
     const res = await this.collectionRef.get();
     return res?.docs?.map((d) => d?.data()) || [];
-  }
-
-  async fetchAllRef(filter: { condition; value }) {
-    const collection = this.collectionRef.where(
-      filter.condition,
-      "==",
-      filter.value
-    );
-    const res = await collection.get();
-    return res;
-  }
-
-  subscribeAll(
-    onChange: (entity: T[]) => void,
-    filter?: { condition: string; value: string }
-  ) {
-    const collection = filter
-      ? this.collectionRef.where(filter.condition, "==", filter.value)
-      : this.collectionRef;
-    return collection.onSnapshot((res) =>
-      onChange(res.docs.map((d) => d.data()))
-    );
   }
 
   async uploadFile(file: File, path: string) {
