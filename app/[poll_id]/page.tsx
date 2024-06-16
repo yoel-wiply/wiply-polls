@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { notFound } from "next/navigation";
 import { PARTYKIT_URL } from "@/app/env";
@@ -13,11 +13,7 @@ const firebase = new BaseRepository<Poll>("polls");
 
 const initialPoll = {};
 
-export default function PollPage({
-  params,
-}: {
-  params: { poll_id: string };
-}) {
+export default function PollPage({ params }: { params: { poll_id: string } }) {
   const pollId = params.poll_id;
   const [poll, setPoll] = useState<Poll>();
 
@@ -41,23 +37,18 @@ export default function PollPage({
   useEffect(() => {
     // firebase.handleMultipleUpdates(pollId)
     firebase.subscribe(pollId, (poll: Poll | null) => {
-      console.log('Poll', poll)
-      if(poll !== null)
-        setPoll(poll);
+      console.log("Poll", poll);
+      if (poll !== null) setPoll(poll);
     });
   }, []);
-  console.log('Poll in reactr', poll)
 
   return (
     <>
+      {!poll && <div className="text-center">טוען...</div>}
       {poll && (
         <div className="flex flex-col space-y-4">
-          <h1 className="text-2xl font-bold">{poll.title}</h1>
-          <PollUI
-            id={pollId}
-            options={poll.options}
-            votes={poll.votes}
-          />
+          <h1 className="text-2xl text-center font-bold" style={{textShadow: "1px 5px 9px rgba(0,0,0,0.78)"}}>{poll.title}</h1>
+          <PollUI id={pollId} options={poll.options} votes={poll.votes} />
         </div>
       )}
 

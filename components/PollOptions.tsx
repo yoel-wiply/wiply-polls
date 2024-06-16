@@ -18,7 +18,7 @@ export default function PollOptions({
     <ul className="flex flex-col space-y-4">
       {options.map((option, i) => (
         <li key={i}>
-          <div className="relative w-full min-h-[40px] border rounded-md  border-black flex">
+          <div className="relative w-full min-h-[40px] border rounded-md  border-black flex" style={{boxShadow: "-4px 3px 20px 3px rgba(0,0,0,0.75)"}}>
             <div
               className={`absolute top-0 left-0 bottom-0 w-full rounded-md transition-all duration-500 z-10 ${
                 votes[i] === mostVotes
@@ -45,7 +45,7 @@ export default function PollOptions({
                 }`}
               >
                 <span>
-                  {vote === i && <span className="relative">🎈 </span>}
+                  {vote === i && <span className="relative">🏆 </span>}
                   {option}
                 </span>
               </button>
