@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="he">
       <body className={inter.className}>
-        <div className="flex w-screen  justify-start">
+        <div className="flex justify-start">
         <div className="absolute w-full top-0  flex flex-col items-center">
             <Image
               src={Header}
@@ -43,7 +43,7 @@ export default function RootLayout({
             />
           </div>
 
-          <main className="mx-auto md:my-auto w-screen md:w-2/3 xl:w-1/2 md:h-auto pb-48">
+          <main className=" w-screen md:w-2/3 xl:w-1/2  pb-48">
             {/* <div
               className="relative bg-white w-full h-full rounded-xl shadow-xl md:h-auto p-8 z-10"
               style={{
