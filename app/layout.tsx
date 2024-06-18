@@ -43,7 +43,7 @@ export default function RootLayout({
             />
           </div>
 
-          <main className=" w-screen md:w-2/3 xl:w-1/2">
+          <main className=" w-screen md:w-2/3 xl:w-1/2 pb-48">
             {/* <div
               className="relative bg-white w-full h-full rounded-xl shadow-xl md:h-auto p-8 z-10"
               style={{
@@ -57,12 +57,12 @@ export default function RootLayout({
             {children}
             {/* </div> */}
           </main>
-          <div className="absolute w-full bottom-10 flex flex-col items-center">
-            <Footer />
+          <div className="absolute w-full bottom-0 flex flex-col items-center">
+            {/* <Footer /> */}
             <Image
               src={PoweredBy}
               alt="PoweredBy"
-              style={{ position: "absolute", bottom: 0, padding: "1rem" }}
+              style={{}}
             />
           </div>
         </div>

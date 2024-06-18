@@ -49,8 +49,8 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
         // <div className="flex flex-col space-y-4">
         <>
           <h1
-            className="text-2xl text-center font-bold p-4"
-            style={{ textShadow: "1px 5px 9px rgba(0,0,0,0.78)", color: '#ff0000', fontFamily: 'cursive' }}
+            className="text-3xl text-center font-bold p-4"
+            style={{ textShadow: "1px 5px 9px rgba(0,0,0,0.78)", color: '#ffffff', fontFamily: 'cursive' }}
           >
             {poll.title}
           </h1>
