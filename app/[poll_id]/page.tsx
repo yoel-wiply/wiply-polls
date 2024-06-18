@@ -56,7 +56,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
           >
             {poll.title}
           </h1>
-          <PollUI id={pollId} options={poll.options} votes={poll.votes} />
+          <PollUI id={pollId} options={poll.options} votes={poll.votes} pollCloses={poll.pollCloses} />
           {/* <Image
               src={Button}
               alt="Button"

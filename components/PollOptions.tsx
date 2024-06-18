@@ -1,7 +1,7 @@
 "use client";
 import People from "./../public/People.png";
 import Person from "./../public/Person.png";
-
+import { formatDateTime } from "@/app/libraries/utilities";
 import Image from "next/image";
 
 export default function PollOptions({
@@ -9,11 +9,13 @@ export default function PollOptions({
   votes,
   vote,
   setVote,
+  pollCloses
 }: {
   options: string[];
   votes: number[];
   vote: number | null;
   setVote: (option: number) => void;
+  pollCloses: string
 }) {
   const totalVotes = votes.reduce((a, b) => a + b, 0);
   const mostVotes = Math.max(...votes);
@@ -46,7 +48,8 @@ export default function PollOptions({
             <div className="select-none w-full flex items-center text-center justify-between px-4 z-20">
               <button
                 onClick={() => setVote(i)}
-                className={`flex flex-1 py-2 text-center justify-center ${
+                disabled={formatDateTime(new Date()) >= pollCloses}
+                className={`flex flex-1 text-right py-2 ${
                   vote === null ? "cursor-pointer" : "cursor-default"
                 } ${
                   vote === null ? "" : votes[i] === mostVotes ? "font-bold" : ""
