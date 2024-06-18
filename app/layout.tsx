@@ -30,20 +30,20 @@ export default function RootLayout({
     <html lang="he">
       <body className={inter.className}>
         <div className="flex justify-start">
-        <div className="absolute w-full top-0  flex flex-col items-center">
+        <div className="absolute w-full top-0 p-4 flex flex-col items-center">
             <Image
               src={Header}
               alt=""
               style={{
-                position: "absolute",
-                top: 0,
-                padding: "1rem",
+                // position: "absolute",
+                // top: 0,
+                // padding: "1rem",
                 maxWidth: "60%",
               }}
             />
           </div>
 
-          <main className=" w-screen md:w-2/3 xl:w-1/2  pb-48">
+          <main className=" w-screen md:w-2/3 xl:w-1/2">
             {/* <div
               className="relative bg-white w-full h-full rounded-xl shadow-xl md:h-auto p-8 z-10"
               style={{
