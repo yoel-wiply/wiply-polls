@@ -52,7 +52,7 @@ export default function PollOptions({
                   vote === null ? "" : votes[i] === mostVotes ? "font-bold" : ""
                 }`}
               >
-                <span className="flex items-centers">
+                <span className="flex items-center z-10">
                   {vote === i && <span className="relative">  < Image className=" ml-1" src={Person} alt="" width={20}></Image> </span>}
                   {option}
                 </span>
