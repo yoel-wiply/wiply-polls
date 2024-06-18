@@ -2,6 +2,9 @@ import Footer from "@/components/Footer";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Image from "next/image";
+import Header from "./../public/Header.png";
+import PoweredBy from "./../public/PoweredBy.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,8 +30,21 @@ export default function RootLayout({
     <html lang="he">
       <body className={inter.className}>
         <div className="flex w-screen  justify-start">
-          <main className="mx-auto md:my-auto w-screen md:w-2/3 xl:w-1/2 md:h-auto p-4 md:p-8 pb-48">
-            <div
+        <div className="absolute w-full top-0  flex flex-col items-center">
+            <Image
+              src={Header}
+              alt=""
+              style={{
+                position: "absolute",
+                top: 0,
+                padding: "1rem",
+                maxWidth: "60%",
+              }}
+            />
+          </div>
+
+          <main className="mx-auto md:my-auto w-screen md:w-2/3 xl:w-1/2 md:h-auto pb-48">
+            {/* <div
               className="relative bg-white w-full h-full rounded-xl shadow-xl md:h-auto p-8 z-10"
               style={{
                 background: "rgba( 255, 255, 255, 0.75 );",
@@ -37,12 +53,17 @@ export default function RootLayout({
                 borderRadius: "10px",
                 border: "1px solid rgba( 255, 255, 255, 0.18 )",
               }}
-            >
-              {children}
-            </div>
+            > */}
+            {children}
+            {/* </div> */}
           </main>
           <div className="absolute w-full bottom-10 flex flex-col items-center">
             <Footer />
+            <Image
+              src={PoweredBy}
+              alt="PoweredBy"
+              style={{ position: "absolute", bottom: 0, padding: "1rem" }}
+            />
           </div>
         </div>
       </body>

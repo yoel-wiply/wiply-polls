@@ -46,10 +46,17 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
     <>
       {!poll && <div className="text-center">טוען...</div>}
       {poll && (
-        <div className="flex flex-col space-y-4">
-          <h1 className="text-2xl text-center font-bold" style={{textShadow: "1px 5px 9px rgba(0,0,0,0.78)"}}>{poll.title}</h1>
+        // <div className="flex flex-col space-y-4">
+        <>
+          <h1
+            className="text-2xl text-center font-bold p-4"
+            style={{ textShadow: "1px 5px 9px rgba(0,0,0,0.78)", color: '#ff0000', fontFamily: 'cursive' }}
+          >
+            {poll.title}
+          </h1>
           <PollUI id={pollId} options={poll.options} votes={poll.votes} />
-        </div>
+        </>
+        // </div>
       )}
 
       <Balloon float={true} />

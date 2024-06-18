@@ -1,4 +1,8 @@
 "use client";
+import People from "./../public/People.png";
+import Person from "./../public/Person.png";
+
+import Image from "next/image";
 
 export default function PollOptions({
   options,
@@ -15,10 +19,13 @@ export default function PollOptions({
   const mostVotes = Math.max(...votes);
 
   return (
-    <ul className="flex flex-col space-y-4">
+    <ul className="flex flex-col space-y-4 p-4">
       {options.map((option, i) => (
         <li key={i}>
-          <div className="relative w-full min-h-[40px] border rounded-md  border-black flex" style={{boxShadow: "-4px 3px 20px 3px rgba(0,0,0,0.75)"}}>
+          <div
+            className="relative w-full min-h-[40px] rounded-mdflex text-white"
+            style={{ backgroundColor: "rgba(0, 2, 43, 0.6)" }}
+          >
             <div
               className={`absolute top-0 left-0 bottom-0 w-full rounded-md transition-all duration-500 z-10 ${
                 votes[i] === mostVotes
@@ -33,7 +40,8 @@ export default function PollOptions({
                     ? 0
                     : `${((votes[i] ?? 0) / totalVotes) * 100}%`,
               }}
-            ></div>
+            >
+            </div>
 
             <div className="select-none w-full flex items-center justify-between px-4 z-20">
               <button
@@ -44,13 +52,14 @@ export default function PollOptions({
                   vote === null ? "" : votes[i] === mostVotes ? "font-bold" : ""
                 }`}
               >
-                <span>
-                  {vote === i && <span className="relative">🏆 </span>}
+                <span className="flex items-centers">
+                  {vote === i && <span className="relative">  < Image className=" ml-1" src={Person} alt="" width={20}></Image> </span>}
                   {option}
                 </span>
               </button>
 
-              {vote === null ? null : <span>{votes[i] ?? 0}</span>}
+              {vote === null ? null : <span style={{color: 'white', zIndex: 10, display: 'flex', alignItems: 'center'}}>              <Image src={People}  className=" ml-1"  alt="" width={20}></Image>
+{votes[i] ?? 0}</span>}
             </div>
           </div>
         </li>
