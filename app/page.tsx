@@ -11,7 +11,7 @@ import { BaseRepository } from "./libraries/firebase";
 import { formatDateTime } from "./libraries/utilities";
 
 const randomId = () => Math.random().toString(36).substring(2, 10);
-
+console.log("t");
 const firebase = new BaseRepository("polls");
 
 export default function Home() {
