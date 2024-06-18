@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="he">
       <body className={inter.className}>
-        <div className="flex justify-start">
+        <div className="flex justify-center">
         <div className="absolute w-full top-0 p-4 flex flex-col items-center">
             <Image
               src={Header}
@@ -38,7 +38,7 @@ export default function RootLayout({
                 // position: "absolute",
                 // top: 0,
                 // padding: "1rem",
-                maxWidth: "60%",
+                maxWidth: 300,
               }}
             />
           </div>
