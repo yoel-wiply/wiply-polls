@@ -17,7 +17,7 @@ body {
   height: 100%;
   min-height: 100vh;
 
-  background-image: url("/euro7.png");
+  background-image: url('/euro7.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
