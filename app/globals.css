@@ -27,6 +27,8 @@ body {
     #6c01e6 46%,
     #42413e 100%
   ); */
+  background-color: unset; /* 2 */
+
    align-content: center;
   /* color: black; */ 
   /* position: relative; */

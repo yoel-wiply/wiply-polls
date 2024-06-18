@@ -9,6 +9,7 @@ import Balloon from "@/components/Balloon";
 import { BaseRepository } from "../libraries/firebase";
 import { useEffect, useState } from "react";
 import Button from './../../public/Button.png'
+import UserForm from "@/components/Form";
 
 const firebase = new BaseRepository<Poll>("polls");
 
@@ -56,11 +57,12 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
             {poll.title}
           </h1>
           <PollUI id={pollId} options={poll.options} votes={poll.votes} />
-          <Image
+          {/* <Image
               src={Button}
               alt="Button"
               style={{}}
-            />
+            /> */}
+            {/* <UserForm/> */}
         </>
         // </div>
       )}
