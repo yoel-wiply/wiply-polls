@@ -42,7 +42,7 @@ export default function Home() {
     // });
     await firebase.create(id,  {id, ...poll})
 
-    // redirect(`/${id}`);
+    redirect(`/${id}`);
   }
 
   return (

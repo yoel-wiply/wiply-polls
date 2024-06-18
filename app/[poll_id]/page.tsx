@@ -3,11 +3,12 @@
 import { notFound } from "next/navigation";
 import { PARTYKIT_URL } from "@/app/env";
 import type { Poll } from "@/app/types";
-
+import Image from "next/image";
 import PollUI from "@/components/PollUI";
 import Balloon from "@/components/Balloon";
 import { BaseRepository } from "../libraries/firebase";
 import { useEffect, useState } from "react";
+import Button from './../../public/Button.png'
 
 const firebase = new BaseRepository<Poll>("polls");
 
@@ -55,6 +56,11 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
             {poll.title}
           </h1>
           <PollUI id={pollId} options={poll.options} votes={poll.votes} />
+          <Image
+              src={Button}
+              alt="Button"
+              style={{}}
+            />
         </>
         // </div>
       )}

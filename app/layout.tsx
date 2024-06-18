@@ -57,8 +57,10 @@ export default function RootLayout({
             {children}
             {/* </div> */}
           </main>
+          
           <div className="absolute w-full bottom-0 flex flex-col items-center">
             {/* <Footer /> */}
+            
             <Image
               src={PoweredBy}
               alt="PoweredBy"
