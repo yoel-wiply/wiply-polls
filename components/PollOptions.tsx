@@ -23,8 +23,8 @@ export default function PollOptions({
       {options.map((option, i) => (
         <li key={i}>
           <div
-            className="relative w-full min-h-[40px] rounded-mdflex text-white"
-            style={{ backgroundColor: "rgba(0, 2, 43, 0.6)" }}
+            className="relative w-full min-h-[40px] rounded-mdflex text-white text-center"
+            style={{ backgroundColor: "rgba(0, 2, 43, 0.9)" }}
           >
             <div
               className={`absolute top-0 left-0 bottom-0 w-full rounded-md transition-all duration-500 z-10 ${
@@ -43,10 +43,10 @@ export default function PollOptions({
             >
             </div>
 
-            <div className="select-none w-full flex items-center justify-between px-4 z-20">
+            <div className="select-none w-full flex items-center text-center justify-between px-4 z-20">
               <button
                 onClick={() => setVote(i)}
-                className={`flex flex-1 text-right py-2 ${
+                className={`flex flex-1 py-2 text-center justify-center ${
                   vote === null ? "cursor-pointer" : "cursor-default"
                 } ${
                   vote === null ? "" : votes[i] === mostVotes ? "font-bold" : ""

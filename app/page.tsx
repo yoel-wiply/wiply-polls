@@ -48,7 +48,7 @@ export default function Home() {
   return (
     <>
       <form action={createPoll}>
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-6 w-4/5	mx-auto">
           <PollMaker />
         </div>
       </form>

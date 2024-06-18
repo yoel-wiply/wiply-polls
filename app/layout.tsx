@@ -38,7 +38,7 @@ export default function RootLayout({
                 // position: "absolute",
                 // top: 0,
                 // padding: "1rem",
-                maxWidth: 300,
+                maxWidth: 200,
               }}
             />
           </div>
