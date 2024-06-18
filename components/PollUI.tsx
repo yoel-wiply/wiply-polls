@@ -14,10 +14,12 @@ export default function PollUI({
   id,
   options,
   votes,
+  pollCloses
 }: {
   id: string;
   options: string[];
   votes: number[];
+  pollCloses: any;
 }) {
   // const [votes, setVotes] = useState<number[]>(initialVotes ?? []);
   const [vote, setVote] = useState<number | null>(null);
@@ -57,6 +59,7 @@ export default function PollUI({
       votes={votes}
       vote={vote}
       setVote={sendVote}
+      pollCloses={pollCloses}
     />
   );
 }

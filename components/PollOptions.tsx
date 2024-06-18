@@ -49,7 +49,7 @@ export default function PollOptions({
               <button
                 onClick={() => setVote(i)}
                 disabled={formatDateTime(new Date()) >= pollCloses}
-                className={`flex flex-1 text-right py-2 ${
+                className={`flex flex-1 justify-center py-2 ${
                   vote === null ? "cursor-pointer" : "cursor-default"
                 } ${
                   vote === null ? "" : votes[i] === mostVotes ? "font-bold" : ""

@@ -48,7 +48,7 @@ export default function PollMaker() {
       />
       <Input
         placeholder="Poll Closes dd/mm/yyyy, 00:00"
-        type="text"
+        type="datetime-local"
         name="pollCloses"
         className={"text-l font-bold"}
         value={pollCloses}
