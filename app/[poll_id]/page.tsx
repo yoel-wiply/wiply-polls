@@ -102,7 +102,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
               <UserForm />
             )}
             )
-            <div className="flex justify-center">
+            {/* <div className="flex justify-center">
               <button
                 className=" mb-12 border rounded-md p-2 bg-slate-100		"
                 style={{
@@ -116,10 +116,8 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
               >
                 נרשמים וזוכים!
               </button>
-              {/* <Image src={Button} alt="button">
 
-              </Image> */}
-            </div>
+            </div> */}
           </>
         )
         // </div>

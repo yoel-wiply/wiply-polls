@@ -6,15 +6,15 @@ import usePartySocket from "partysocket/react";
 import { useEffect, useState } from "react";
 import PollOptions from "./PollOptions";
 import { BaseRepository } from "@/app/libraries/firebase";
+import { localStorageAvailable } from "@/app/libraries/Utilities";
 
 const firebase = new BaseRepository("polls");
-
 
 export default function PollUI({
   id,
   options,
   votes,
-  isPollClosed
+  isPollClosed,
 }: {
   id: string;
   options: string[];
@@ -35,22 +35,27 @@ export default function PollUI({
   //   },
   // });
 
-  const sendVote =  async (option: number) => {
-    console.log(option)
+  const sendVote = async (option: number) => {
+    console.log(option);
     if (vote === null) {
-      await firebase.handleMultipleUpdates(id, option)
+      await firebase.handleMultipleUpdates(id, option);
       setVote(option);
     }
   };
 
   // prevent double voting
   useEffect(() => {
-    let saved = localStorage?.getItem("poll:" + id);
-    if (vote === null && saved !== null) {
-      setVote(+saved);
-    } else if (vote !== null && saved === null) {
-      localStorage?.setItem("poll:" + id, `${vote}`);
-    }
+    // let saved = localStorageAvailable()
+    //   ? localStorage?.getItem("poll:" + id)
+    //   : null;
+    // if (vote === null && saved !== null) {
+    //   setVote(+saved);
+    // }
+    // else if (vote !== null && saved === null) {
+    //   if (localStorageAvailable()) {
+    //     localStorage?.setItem("poll:" + id, `${vote}`);
+    //   }
+    // }
   }, [id, vote]);
 
   return (
