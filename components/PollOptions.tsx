@@ -10,16 +10,18 @@ export default function PollOptions({
   votes,
   vote,
   setVote,
-  pollCloses
+  isPollClosed
 }: {
   options: string[];
   votes: number[];
   vote: number | null;
   setVote: (option: number) => void;
-  pollCloses: string
+  isPollClosed: boolean
 }) {
   const totalVotes = votes.reduce((a, b) => a + b, 0);
   const mostVotes = Math.max(...votes);
+
+  console.log('formatDateTime(new Date())', formatDateTime(new Date()))
 
   return (
     <ul className="flex flex-col space-y-4 p-4">
@@ -39,7 +41,7 @@ export default function PollOptions({
               }`}
               style={{
                 width:
-                  vote === null
+                  vote === null && !isPollClosed
                     ? 0
                     : `${((votes[i] ?? 0) / totalVotes) * 100}%`,
               }}
@@ -49,11 +51,11 @@ export default function PollOptions({
             <div className="select-none w-full flex items-center text-center justify-between px-4 z-20">
               <button
                 onClick={() => setVote(i)}
-                disabled={formatDateTime(new Date()) >= pollCloses}
+                disabled={isPollClosed}
                 className={`flex flex-1 justify-center py-2 ${
-                  vote === null ? "cursor-pointer" : "cursor-default"
+                  vote === null && !isPollClosed  ? "cursor-pointer" : "cursor-default"
                 } ${
-                  vote === null ? "" : votes[i] === mostVotes ? "font-bold" : ""
+                  vote === null && !isPollClosed  ? "" : votes[i] === mostVotes ? "font-bold" : ""
                 }`}
               >
                 <span className="flex items-center z-10">
@@ -62,7 +64,7 @@ export default function PollOptions({
                 </span>
               </button>
 
-              {vote === null ? null : <span style={{color: 'white', zIndex: 10, display: 'flex', alignItems: 'center'}}>              <Image src={People}  className=" ml-1"  alt="" width={20}></Image>
+              {vote === null && !isPollClosed ? null : <span style={{color: 'white', zIndex: 10, display: 'flex', alignItems: 'center'}}>              <Image src={People}  className=" ml-1"  alt="" width={20}></Image>
 {votes[i] ?? 0}</span>}
             </div>
           </div>

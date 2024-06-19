@@ -8,8 +8,9 @@ import PollUI from "@/components/PollUI";
 import Balloon from "@/components/Balloon";
 import { BaseRepository } from "../libraries/firebase";
 import { useEffect, useState } from "react";
-import Button from './../../public/Button.png'
+import Button from "./../../public/Button.png";
 import UserForm from "@/components/Form";
+import { formatDateTime } from "../libraries/Utilities";
 
 const firebase = new BaseRepository<Poll>("polls");
 
@@ -44,25 +45,50 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
     });
   }, []);
 
+  const isPollClosed = poll && poll.pollCloses ? formatDateTime(new Date()) >= poll?.pollCloses : undefined
+
   return (
     <>
-      {!poll && <div className="text-center">טוען...</div>}
-      {poll && (
+      {!poll && isPollClosed === undefined && (
+        <div className="text-center text-white">טוען...</div>
+      )}
+      {poll && isPollClosed !== undefined && (
         // <div className="flex flex-col space-y-4">
         <>
+          {isPollClosed && (
+            <h1
+              className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
+              style={{
+                textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
+                color: "#ffffff",
+                fontFamily: "cursive",
+              }}
+            >
+              This Poll is now closed look at the results
+            </h1>
+          )}
           <h1
             className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
-            style={{ textShadow: "1px 5px 9px rgba(0,0,0,0.78)", color: '#ffffff', fontFamily: 'cursive' }}
+            style={{
+              textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
+              color: "#ffffff",
+              fontFamily: "cursive",
+            }}
           >
             {poll.title}
           </h1>
-          <PollUI id={pollId} options={poll.options} votes={poll.votes} pollCloses={poll.pollCloses} />
+          <PollUI
+            id={pollId}
+            options={poll.options}
+            votes={poll.votes}
+            isPollClosed={isPollClosed}
+          />
           {/* <Image
               src={Button}
               alt="Button"
               style={{}}
             /> */}
-            {/* <UserForm/> */}
+          {/* <UserForm/> */}
         </>
         // </div>
       )}
