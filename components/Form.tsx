@@ -14,6 +14,7 @@ const UserForm: React.FC = () => {
     name: "",
     email: "",
     acceptMarketing: false,
+    
   });
   const [recievedFormData, setRecievedFormData] = useState(false);
   const [hideNameInput, setHidenameInput] = useState(false);
@@ -91,7 +92,7 @@ const UserForm: React.FC = () => {
       <div className="form-group checkbox-group mt-2">
 
       <p onClick={() => setHidenameInput(!hideNameInput)}>
-        Already Registered? Click here
+        {hideNameInput ? 'Already Registered? Click here' : 'New user? Click here'}
       </p>
       </div>
 

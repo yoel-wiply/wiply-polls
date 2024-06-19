@@ -60,9 +60,21 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
         poll && isPollClosed !== undefined && (
           // <div className="flex flex-col space-y-4">
           <>
-            ({!formView ? (
-            <>
-              {isPollClosed && (
+            (
+            {!formView ? (
+              <>
+                {isPollClosed && (
+                  <h1
+                    className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
+                    style={{
+                      textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
+                      color: "#ffffff",
+                      fontFamily: "cursive",
+                    }}
+                  >
+                    הסקר הסתיים
+                  </h1>
+                )}
                 <h1
                   className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
                   style={{
@@ -71,42 +83,42 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
                     fontFamily: "cursive",
                   }}
                 >
-                  This Poll is now closed look at the results
+                  {poll.title}
                 </h1>
-              )}
-              <h1
-                className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
-                style={{
-                  textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
-                  color: "#ffffff",
-                  fontFamily: "cursive",
-                }}
-              >
-                {poll.title}
-              </h1>
-              <PollUI
-                id={pollId}
-                options={poll.options}
-                votes={poll.votes}
-                isPollClosed={isPollClosed}
-              />
-              {/* <Image
+                <PollUI
+                  id={pollId}
+                  options={poll.options}
+                  votes={poll.votes}
+                  isPollClosed={isPollClosed}
+                />
+                {/* <Image
               src={Button}
               alt="Button"
               style={{}}
             /> */}
-              {/* <UserForm/> */}
-            </>
+                {/* <UserForm/> */}
+              </>
             ) : (
-            <UserForm />
-            )})
+              <UserForm />
+            )}
+            )
             <div className="flex justify-center">
-            <button
-              className=" mb-12 border rounded-md p-2 bg-slate-100		"
-              onClick={() => setFormView(!formView)}
-            >
-              Click here to view coupon
-            </button>
+              <button
+                className=" mb-12 border rounded-md p-2 bg-slate-100		"
+                style={{
+                  fontFamily: "cursive",
+                  backgroundImage: "linear-gradient(90deg, #72bef9, #1c62e3)",
+                  color: "white",
+                  borderRadius: 20,
+                  borderWidth: 0,
+                }}
+                onClick={() => setFormView(!formView)}
+              >
+                נרשמים וזוכים!
+              </button>
+              {/* <Image src={Button} alt="button">
+
+              </Image> */}
             </div>
           </>
         )
