@@ -69,3 +69,28 @@ body {
     background-image: linear-gradient(90deg, #72bef9, #1c62e3);
   }
 }
+
+
+@media (max-width: 767px) {
+  @supports (-webkit-overflow-scrolling: touch) { //only safari
+    input[type="date"]:before {
+      color: #000
+      content: attr(placeholder);
+    }
+
+    input[type="date"].filled:before {
+      color: #000;
+      content: "" !important;
+    }
+
+    input[type="date"]:not(.filled):before {
+      color: #000;
+      content: attr(placeholder);
+    }
+
+    input[type="date"] {
+      -webkit-text-fill-color: #000;
+      -webkit-opacity: 1;
+    }
+  }
+}
