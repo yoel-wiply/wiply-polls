@@ -72,9 +72,9 @@ body {
 
 
 @media (max-width: 767px) {
-  @supports (-webkit-overflow-scrolling: touch) { //only safari
+  @supports (-webkit-overflow-scrolling: touch) {
     input[type="date"]:before {
-      color: #000
+      color: #000;
       content: attr(placeholder);
     }
 
