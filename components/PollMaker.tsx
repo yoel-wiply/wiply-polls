@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import { BaseRepository } from "@/app/libraries/firebase";
+import { formatDateTime } from "@/app/libraries/Utilities";
 
 const MIN_OPTIONS = 2;
 const MAX_OPTIONS = 8;
@@ -24,10 +25,10 @@ export default function PollMaker() {
 
   const canAdd = options.length < MAX_OPTIONS;
   const canSubmit =
-    title.length > 0 && pollCloses.length > 0 &&
+    title.length > 0 &&
+    pollCloses.length > 0 &&
     options.length >= MIN_OPTIONS &&
     options.filter((option) => option.trim().length === 0).length === 0;
-
 
 
   return (
@@ -38,6 +39,7 @@ export default function PollMaker() {
         name="title"
         className={"text-2xl font-bold"}
         value={title}
+     
         onChange={(e) => setTitle(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -48,6 +50,7 @@ export default function PollMaker() {
       />
       <Input
         placeholder="Poll Closes dd/mm/yyyy, 00:00"
+        defaultValue={formatDateTime( new Date())}
         type="datetime-local"
         name="pollCloses"
         className={"text-l font-bold"}
