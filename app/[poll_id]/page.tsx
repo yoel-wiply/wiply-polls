@@ -19,6 +19,7 @@ const initialPoll = {};
 export default function PollPage({ params }: { params: { poll_id: string } }) {
   const pollId = params.poll_id;
   const [poll, setPoll] = useState<Poll>();
+  const [formView, setFormView] = useState(false);
 
   // const req = await fetch(`${PARTYKIT_URL}/party/${pollId}`, {
   //   method: "GET",
@@ -45,53 +46,72 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
     });
   }, []);
 
-  const isPollClosed = poll && poll.pollCloses ? formatDateTime(new Date()) >= poll?.pollCloses : undefined
+  const isPollClosed =
+    poll && poll.pollCloses
+      ? formatDateTime(new Date()) >= poll?.pollCloses
+      : undefined;
 
   return (
     <>
       {!poll && isPollClosed === undefined && (
         <div className="text-center text-white">טוען...</div>
       )}
-      {poll && isPollClosed !== undefined && (
-        // <div className="flex flex-col space-y-4">
-        <>
-          {isPollClosed && (
-            <h1
-              className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
-              style={{
-                textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
-                color: "#ffffff",
-                fontFamily: "cursive",
-              }}
-            >
-              This Poll is now closed look at the results
-            </h1>
-          )}
-          <h1
-            className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
-            style={{
-              textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
-              color: "#ffffff",
-              fontFamily: "cursive",
-            }}
-          >
-            {poll.title}
-          </h1>
-          <PollUI
-            id={pollId}
-            options={poll.options}
-            votes={poll.votes}
-            isPollClosed={isPollClosed}
-          />
-          {/* <Image
+      {
+        poll && isPollClosed !== undefined && (
+          // <div className="flex flex-col space-y-4">
+          <>
+            ({!formView ? (
+            <>
+              {isPollClosed && (
+                <h1
+                  className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
+                  style={{
+                    textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
+                    color: "#ffffff",
+                    fontFamily: "cursive",
+                  }}
+                >
+                  This Poll is now closed look at the results
+                </h1>
+              )}
+              <h1
+                className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
+                style={{
+                  textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
+                  color: "#ffffff",
+                  fontFamily: "cursive",
+                }}
+              >
+                {poll.title}
+              </h1>
+              <PollUI
+                id={pollId}
+                options={poll.options}
+                votes={poll.votes}
+                isPollClosed={isPollClosed}
+              />
+              {/* <Image
               src={Button}
               alt="Button"
               style={{}}
             /> */}
-          {/* <UserForm/> */}
-        </>
+              {/* <UserForm/> */}
+            </>
+            ) : (
+            <UserForm />
+            )})
+            <div className="flex justify-center">
+            <button
+              className=" mb-12 border rounded-md p-2 bg-slate-100		"
+              onClick={() => setFormView(!formView)}
+            >
+              Click here to view coupon
+            </button>
+            </div>
+          </>
+        )
         // </div>
-      )}
+      }
 
       <Balloon float={true} />
       {/* <div className="font-medium text-lg pt-8 text-center">

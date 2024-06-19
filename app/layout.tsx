@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -26,6 +25,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+
   return (
     <html lang="he">
       <body className={inter.className}>
@@ -43,7 +44,7 @@ export default function RootLayout({
             />
           </div>
 
-          <main className=" w-screen md:w-2/3 xl:w-1/2 pb-48">
+      <main className=" w-screen md:w-2/3 xl:w-1/2 pb-48">
             {/* <div
               className="relative bg-white w-full h-full rounded-xl shadow-xl md:h-auto p-8 z-10"
               style={{
@@ -56,10 +57,11 @@ export default function RootLayout({
             > */}
             {children}
             {/* </div> */}
-          </main>
+          </main> 
           
           <div className="absolute w-full bottom-0 flex flex-col items-center">
             {/* <Footer /> */}
+
             
             <Image
               src={PoweredBy}
