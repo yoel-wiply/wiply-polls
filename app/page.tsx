@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import { PARTYKIT_URL } from "./env";
 import Input from "@/components/Input";
 import { BaseRepository } from "./libraries/firebase";
-import { formatDateTime } from "./libraries/utilities";
+import { formatDateTime } from "./libraries/Utilities";
 
 
 const randomId = () => Math.random().toString(36).substring(2, 10);

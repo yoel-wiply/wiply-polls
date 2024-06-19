@@ -1,7 +1,7 @@
 "use client";
 import People from "./../public/People.png";
 import Person from "./../public/Person.png";
-import { formatDateTime } from "@/app/libraries/utilities";
+import { formatDateTime } from "@/app/libraries/Utilities";
 import Image from "next/image";
 
 
