@@ -61,7 +61,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
         poll && isPollClosed !== undefined && (
           // <div className="flex flex-col space-y-4">
           <>
-            (
+            
             {!formView ? (
               <>
                 {isPollClosed && (
@@ -102,7 +102,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
             ) : (
               <UserForm />
             )}
-            )
+            
             {/* <div className="flex justify-center">
               <button
                 className=" mb-12 border rounded-md p-2 bg-slate-100		"
