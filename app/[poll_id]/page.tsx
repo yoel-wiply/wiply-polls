@@ -69,7 +69,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
               <>
                 {isPollClosed && (
                   <h1
-                    className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
+                    className="text-lg text-center font-bold p-4 mx-auto"
                     style={{
                       textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
                       color: "#ffffff",
@@ -80,7 +80,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
                   </h1>
                 )}
                 <h1
-                  className="text-2xl text-center font-bold p-4 w-3/4 mx-auto"
+                  className="text-lg text-center font-bold p-4 mx-auto"
                   style={{
                     textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
                     color: "#ffffff",

@@ -44,7 +44,7 @@ export default function RootLayout({
           `}
         </Script>
         <div className="flex justify-center">
-          <main className=" w-screen md:w-2/3 xl:w-1/2 pb-48">
+          <main className=" w-screen md:w-2/3 xl:w-1/2 ">
             {children}
           </main>
           <div className="absolute w-full bottom-0 flex flex-col items-center">
