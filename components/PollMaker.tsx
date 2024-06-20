@@ -22,7 +22,7 @@ export default function PollMaker() {
       setNewOption("");
     }
   };
-
+console.log("1");
   const canAdd = options.length < MAX_OPTIONS;
   const canSubmit =
     title.length > 0 &&
