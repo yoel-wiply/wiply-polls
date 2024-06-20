@@ -41,10 +41,13 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
 
   useEffect(() => {
     // firebase.handleMultipleUpdates(pollId)
-    firebase.subscribe(pollId, (poll: Poll | null) => {
+    const listener = firebase.subscribe(pollId, (poll: Poll | null) => {
       console.log("Poll", poll);
       if (poll !== null) setPoll(poll);
     });
+    return () => {
+      listener()
+    }
   }, []);
 
   const isPollClosed =
