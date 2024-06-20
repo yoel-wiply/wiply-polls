@@ -29,7 +29,7 @@ export default function PollOptions({
         <li key={i}>
           <div
             className="relative w-full min-h-[40px] rounded-mdflex text-white text-center"
-            style={{ backgroundColor: "rgba(0, 2, 43, 0.9)" }}
+            style={{ backgroundColor: "rgba(0, 0, 0, 0.9)" }}
           >
             <div
               className={`absolute top-0 left-0 bottom-0 w-full rounded-md transition-all duration-500 z-10 ${

@@ -12,6 +12,7 @@ import Button from "./../../public/Button.png";
 import UserForm from "@/components/Form";
 import { formatDateTime } from "../libraries/Utilities";
 
+
 const firebase = new BaseRepository<Poll>("polls");
 
 const initialPoll = {};
@@ -69,7 +70,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
                     style={{
                       textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
                       color: "#ffffff",
-                      fontFamily: "cursive",
+                      fontFamily: "Heebo",
                     }}
                   >
                     הסקר הסתיים
@@ -80,7 +81,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
                   style={{
                     textShadow: "1px 5px 9px rgba(0,0,0,0.78)",
                     color: "#ffffff",
-                    fontFamily: "cursive",
+                    fontFamily: "Heebo",
                   }}
                 >
                   {poll.title}
@@ -123,7 +124,7 @@ export default function PollPage({ params }: { params: { poll_id: string } }) {
         // </div>
       }
 
-      <Balloon float={true} />
+      {/* <Balloon float={true} /> */}
       {/* <div className="font-medium text-lg pt-8 text-center">
         <a className="underline" href="/">
           Create your own poll!

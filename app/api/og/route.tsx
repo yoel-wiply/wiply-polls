@@ -52,7 +52,7 @@ export async function GET(request: Request) {
         </div>
 
         <span tw="absolute bottom-10 right-10">
-          <Balloon />
+          {/* <Balloon /> */}
         </span>
       </div>
     ),
