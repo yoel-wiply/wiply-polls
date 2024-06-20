@@ -47,7 +47,7 @@ export default function RootLayout({
           <main className=" w-screen md:w-2/3 xl:w-1/2 ">
             {children}
           </main>
-          <div className="absolute w-full bottom-0 flex flex-col items-center">
+          <div className="absolute w-full bottom-0 flex flex-col items-center mb-40">
             <Image src={PoweredBy} alt="PoweredBy" style={{}} />
           </div>
         </div>
