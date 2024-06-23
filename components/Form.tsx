@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import "./UserForm.css";
+// import "./UserForm.css";
+import { BaseRepository } from "@/app/libraries/firebase";
 
 interface FormData {
   name: string;
@@ -9,15 +10,18 @@ interface FormData {
   acceptMarketing: boolean;
 }
 
-const UserForm: React.FC = () => {
+const firebase = new BaseRepository("polls");
+
+const UserForm: React.FC = ({ option }: any) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     acceptMarketing: false,
-    
   });
   const [recievedFormData, setRecievedFormData] = useState(false);
   const [hideNameInput, setHidenameInput] = useState(false);
+
+  console.log('formData', formData)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -26,6 +30,8 @@ const UserForm: React.FC = () => {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
+
+
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -41,6 +47,11 @@ const UserForm: React.FC = () => {
         },
       });
 
+      // const id = window?.location.pathname.slice(1);
+      // const option = localStorage.getItem("poll:" + id);
+
+      // await firebase?.submitForm(id, formData?.email, option);
+
       const body = response.json();
       if (response.ok) {
         setRecievedFormData(true);
@@ -53,20 +64,22 @@ const UserForm: React.FC = () => {
   return (
     <form className="user-form" onSubmit={handleSubmit}>
       {recievedFormData && <div>Thank you, we recieved your form data</div>}
-      {hideNameInput && (
+      <div className="form-group">מלאו את הפרטים ותכנסו לתחרות:</div>
+      {!hideNameInput && (
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">שם מלא</label>
           <input
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
+            
           />
         </div>
       )}
       <div className="form-group">
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">מייל</label>
         <input
           type="email"
           id="email"
@@ -90,12 +103,12 @@ const UserForm: React.FC = () => {
       </div>
       <button type="submit">Submit</button>
       <div className="form-group checkbox-group mt-2">
-
-      <p onClick={() => setHidenameInput(!hideNameInput)}>
-        {hideNameInput ? 'Already Registered? Click here' : 'New user? Click here'}
-      </p>
+        <p onClick={() => setHidenameInput(!hideNameInput)}>
+          {hideNameInput
+            ? "New user? Click here"
+            : "Already Registered? Click here"}
+        </p>
       </div>
-
     </form>
   );
 };

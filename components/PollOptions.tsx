@@ -1,9 +1,10 @@
 "use client";
-import People from "./../public/People.png";
-import Person from "./../public/Person.png";
+
 import { formatDateTime } from "@/app/libraries/Utilities";
 import Image from "next/image";
 
+const People = "https://pollswiply.fra1.cdn.digitaloceanspaces.com/public/People.png"
+const Person = "https://pollswiply.fra1.cdn.digitaloceanspaces.com/public/Person.png"
 
 export default function PollOptions({
   options,
@@ -59,12 +60,12 @@ export default function PollOptions({
                 }`}
               >
                 <span className="flex items-center z-10">
-                  {vote === i && <span className="relative">  < Image className=" ml-1" src={Person} alt="" width={20}></Image> </span>}
+                  {vote === i && <span className="relative">  < Image className=" ml-1" src={Person} alt="" width={20} height={20}></Image> </span>}
                   {option}
                 </span>
               </button>
 
-              {vote === null && !isPollClosed ? null : <span style={{color: 'white', zIndex: 10, display: 'flex', alignItems: 'center'}}>              <Image src={People}  className=" ml-1"  alt="" width={20}></Image>
+              {vote === null && !isPollClosed ? null : <span style={{color: 'white', zIndex: 10, display: 'flex', alignItems: 'center'}}>              <Image src={People}  className=" ml-1"  alt="" width={20} height={20}></Image>
 {votes[i] ?? 0}</span>}
             </div>
           </div>

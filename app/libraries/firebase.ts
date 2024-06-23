@@ -26,6 +26,8 @@ if (!firebase.apps.length) {
 
 const db = firebase.firestore();
 const storage = firebase.storage();
+// db.useEmulator('localhost', 8080);
+// storage.useEmulator('localhost', 9199);
 
 if (process.env.NX_PUBLIC_USE_EMULATOR === "true") {
   db.useEmulator("localhost", 8080);
@@ -74,6 +76,30 @@ export class BaseRepository<T extends Base> {
     try {
       const collection = this.collectionRef.doc(id);
       return collection.update(entity);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async submitForm(id: string, email: string, option: string | null) {
+    try {
+      const emailDoc = await this.collectionRef
+        .doc(id)
+        .collection("emails")
+        .doc(email)
+        .get();
+
+      if (emailDoc.exists) {
+        // sorry can't submit another vote
+      } else {
+        const response = await this.collectionRef
+          .doc(id)
+          .collection("emails")
+          .doc(email)
+          .set({
+            option,
+          });
+      }
     } catch (e) {
       console.log(e);
     }

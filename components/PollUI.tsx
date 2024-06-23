@@ -1,12 +1,9 @@
 "use client";
 
-import { PARTYKIT_HOST } from "@/app/env";
-import { Poll } from "@/app/types";
-import usePartySocket from "partysocket/react";
+
 import { useEffect, useState } from "react";
 import PollOptions from "./PollOptions";
 import { BaseRepository } from "@/app/libraries/firebase";
-import { localStorageAvailable } from "@/app/libraries/Utilities";
 
 const firebase = new BaseRepository("polls");
 
