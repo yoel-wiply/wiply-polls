@@ -4,7 +4,12 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    remotePatterns: [{hostname: "pollswiply.fra1.cdn.digitaloceanspaces.com", protocol: "https"}]
+    remotePatterns: [
+      {
+        hostname: "pollswiply.fra1.cdn.digitaloceanspaces.com",
+        protocol: "https",
+      },
+    ],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Disable code splitting by setting optimization.splitChunks to false
@@ -22,6 +27,20 @@ const nextConfig = {
     config.optimization.minimize = true;
 
     return config;
+  },
+  async headers() {
+    return [
+      {
+        // Define a source pattern that matches your dynamic route
+        source: "/:poll_id", // Matches any path like /1, /2, etc.
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=60, stale-while-revalidate=120",
+          },
+        ],
+      },
+    ];
   },
 };
 
