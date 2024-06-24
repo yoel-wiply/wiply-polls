@@ -27,10 +27,10 @@ async function fetchAll() {
 export async function generateStaticParams() {
   const serviceAccount: ServiceAccount = {
     projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-    privateKey: process.env.PRIVATE_KEY
-    ,    clientEmail:
-      process.env.CLIENT_EMAIL,
+    privateKey: process.env.NEXT_PUBLIC_PRIVATE_KEY,    
+    clientEmail: process.env.NEXT_PUBLIC_CLIENT_EMAIL,
   };
+
   initializeApp({
     credential: cert(serviceAccount),
   });
