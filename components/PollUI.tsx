@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import PollOptions from "./PollOptions";
 import { BaseRepository } from "@/app/libraries/firebase";
+import Cookies from 'js-cookie';
 
 const firebase = new BaseRepository("polls");
 
@@ -34,14 +35,23 @@ export default function PollUI({
 
   const sendVote = async (option: number) => {
     console.log(option);
+    document.cookie = ""
     if (vote === null) {
       await firebase.handleMultipleUpdates(id, option);
       setVote(option);
+      Cookies.set('poll_voted_' + id, `${option}`, { expires: 7 }); // Expires in 7 days
+
     }
   };
 
   // prevent double voting
   useEffect(() => {
+    const votedCookie = Cookies.get('poll_voted_' + id);
+    if (votedCookie) {
+      setVote(parseInt(votedCookie));
+    }
+
+
     // let saved = localStorageAvailable()
     //   ? localStorage?.getItem("poll:" + id)
     //   : null;
