@@ -21,7 +21,7 @@ const randomId = () => Math.random().toString(36).substring(2, 10);
 const firebase = new BaseRepository("polls");
 
 // Define your password
-const PASSWORD = process.env.NEXT_PUBLIC_PASSWORD || "hamal1312";
+const PASSWORD = process.env.NEXT_PUBLIC_PASSWORD || "hamal1313";
 
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
