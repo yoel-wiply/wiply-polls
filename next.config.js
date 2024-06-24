@@ -31,12 +31,12 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Define a source pattern that matches your dynamic route
-        source: "/:poll_id", // Matches any path like /1, /2, etc.
+        // Apply these headers to all routes in your application
+        source: '/(.*)',
         headers: [
           {
-            key: "Cache-Control",
-            value: "public, max-age=60, stale-while-revalidate=120",
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, s-maxage=7200, stale-while-revalidate=59',
           },
         ],
       },
