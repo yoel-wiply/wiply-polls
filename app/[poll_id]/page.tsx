@@ -16,7 +16,6 @@ import {
 } from "firebase-admin/firestore";
 import Poll from "./poll";
 
-
 async function fetchAll() {
   const db = getFirestore();
 
@@ -27,7 +26,9 @@ async function fetchAll() {
 export async function generateStaticParams() {
   const serviceAccount: ServiceAccount = {
     projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-    privateKey: process.env.NEXT_PUBLIC_PRIVATE_KEY,    
+    privateKey: process.env.NEXT_PUBLIC_PRIVATE_KEY
+      ? JSON.parse(process.env.NEXT_PUBLIC_PRIVATE_KEY)
+      : undefined,
     clientEmail: process.env.NEXT_PUBLIC_CLIENT_EMAIL,
   };
 
