@@ -60,12 +60,12 @@ export default function PollOptions({
                 }`}
               >
                 <span className="flex items-center z-10">
-                  {vote === i && <span className="relative">  < Image className=" ml-1" src={Person} alt="" width={20} height={20}></Image> </span>}
+                  {vote === i && <span className="relative">  < img className=" ml-1" src={Person} alt="" width={20} height={20}></img> </span>}
                   {option}
                 </span>
               </button>
 
-              {vote === null && !isPollClosed ? null : <span style={{color: 'white', zIndex: 10, display: 'flex', alignItems: 'center'}}>              <Image src={People}  className=" ml-1"  alt="" width={20} height={20}></Image>
+              {vote === null && !isPollClosed ? null : <span style={{color: 'white', zIndex: 10, display: 'flex', alignItems: 'center'}}>              <img src={People}  className=" ml-1"  alt="" width={20} height={20}></img>
 {votes[i] ?? 0}</span>}
             </div>
           </div>
